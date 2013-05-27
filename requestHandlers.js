@@ -2,7 +2,7 @@ var querystring = require("querystring");
 var fs = require("fs");
 var formidable = require("formidable");
 
-var imgfp = "./tmp/test.png";
+var imgfp = "/tmp/test.png";
 
 function start(response, request) {
 	
