@@ -1,6 +1,6 @@
-var querystring = require("querystring");
-var fs = require("fs");
-var formidable = require("formidable");
+var querystring = require("querystring"),
+	fs = require("fs"),
+	formidable = require("formidable");
 
 var imgfp = "/tmp/test.png";
 
@@ -30,9 +30,11 @@ function upload(response, request) {
 	console.log("Request handler 'upload' was called.");
 	
 	var form = new formidable.IncomingForm();
+	
 	console.log("about to parse");
+	
 	form.parse(request, function(error, fields, files) {
-		console.log("parsing done");
+		console.log("parsing done on " +  files.upload.name);
 		/* Possible error on Windows systems:
 		 * tried to rename to an already existing file */
 		fs.rename(files.upload.path, imgfp, function(err) {
@@ -63,7 +65,6 @@ function show(response, request) {
 			response.end();
 		}
 	});
-	response.writeHead(200, {"Content-Type": "image/png"});
 }
 
 exports.start = start;
