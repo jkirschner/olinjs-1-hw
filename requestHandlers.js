@@ -15,7 +15,7 @@ function start(response, request) {
 		'<form action="/upload" enctype="multipart/form-data" ' +
 		'method="post">'+
 		'<input type="file" name="upload" multiple="multiple">'+
-		'<input type="submit" value="Submit" />'+
+		'<input type="submit" value="Upload file" />'+
 		'</form>'+
 		'</body>'+
 		'</html>';
@@ -34,7 +34,7 @@ function upload(response, request) {
 	console.log("about to parse");
 	
 	form.parse(request, function(error, fields, files) {
-		console.log("parsing done on " +  files.upload.name);
+		console.log("parsing done");
 		/* Possible error on Windows systems:
 		 * tried to rename to an already existing file */
 		fs.rename(files.upload.path, imgfp, function(err) {
