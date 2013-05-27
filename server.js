@@ -1,6 +1,8 @@
 var http = require("http");
 var url = require("url");
 
+var port_num = process.env.PORT || 8888;
+
 function start(route, handle) {
 	
 	function onRequest(request, response) {
@@ -9,8 +11,8 @@ function start(route, handle) {
 		route(handle, pathname, response, request);
 	}
 	
-	http.createServer(onRequest).listen(8888);
-	console.log("Server started on port 8888");
+	http.createServer(onRequest).listen(port_num);
+	console.log("Server started on port " + port_num);
 	
 }
 
