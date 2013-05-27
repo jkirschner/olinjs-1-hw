@@ -6,7 +6,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-	"node": "0.10.x"
+	"node": "0.10.x",
     "formidable": "1.2.x"
   }
 }
