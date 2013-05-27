@@ -6,10 +6,12 @@ var imgfp = "/tmp/test.png";
 
 function start(response, request) {
 	
+	console.log("Request handler 'start' was called.");
+	
 	var body = '<html>'+
 		'<head>'+
-		'<meta http-equiv="Content-Type" content="text/html; '+
-		'charset=UTF-8" />'+
+		'<meta http-equiv="Content-Type" '+
+		'content="text/html"; charset=UTF-8" />'+
 		'</head>'+
 		'<body>'+
 		'<form action="/upload" enctype="multipart/form-data" ' +
@@ -20,7 +22,6 @@ function start(response, request) {
 		'</body>'+
 		'</html>';
 
-	console.log("Request handler 'start' was called.");
 	response.writeHead(200, {"Content-Type": "text/html"});
 	response.write(body);
 	response.end();
@@ -44,12 +45,11 @@ function upload(response, request) {
 				fs.rename(files.upload.path, imgfp);
 			}
 		});
+		response.writeHead(200, {"Content-Type": "text/html"});
+		response.write("received image:<br/>");
+		response.write("<img src='/show' />");
+		response.end();
 	});
-	
-	response.writeHead(200, {"Content-Type": "text/html"});
-	response.write("received image:<br/>");
-	response.write("<img src='/show' />");
-	response.end();
 }
 
 function show(response, request) {
